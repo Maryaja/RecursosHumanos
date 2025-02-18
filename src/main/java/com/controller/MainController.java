@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,10 +23,10 @@ public class MainController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Employee List</title>");
+            out.println("<title>LISTA DE EMPLEADOS</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Employee List</h1>");
+            out.println("<h1>LISTA DE EMPLEADOS</h1>");
             out.println("<a href='addEmployee.jsp'>Add New Employee</a><br><br>");
             out.println("<table border='1'>");
             out.println("<tr><th>ID</th><th>Name</th><th>Username</th><th>Phone Number</th><th>Email</th><th>Date of Birth</th></tr>");

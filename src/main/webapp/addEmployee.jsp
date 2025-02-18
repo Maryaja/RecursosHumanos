@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Employee</title>
+    <title>AGREGAR EMPLEADO</title>
 </head>
 <body>
 <h1>Add New Employee</h1>

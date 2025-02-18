@@ -1,4 +1,4 @@
-package model;
+package com.model;
 
 public class Departamento {
     private int idDepartamento;

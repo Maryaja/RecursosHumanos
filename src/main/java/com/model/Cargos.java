@@ -1,6 +1,7 @@
-package model;
+package com.model;
 
-public class Cargos { private int idCargo;
+public class Cargos {
+    private int idCargo;
     private String cargo;
     private String descripcionCargo;
 
@@ -38,5 +39,4 @@ public class Cargos { private int idCargo;
     public void setDescripcionCargo(String descripcionCargo) {
         this.descripcionCargo = descripcionCargo;
     }
-
 }

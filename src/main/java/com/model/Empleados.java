@@ -1,4 +1,4 @@
-package model;
+package com.model;
 
 import java.util.Date;
 
@@ -9,18 +9,20 @@ public class Empleados {
     private String numeroTelefono;
     private String correoInstitucional;
     private Date fechaNacimiento;
+    private String numeroDui;
 
     // Constructor vacío
     public Empleados() {}
 
     // Constructor con parámetros
-    public Empleados(int idEmpleado, String nombrePersona, String usuario, String numeroTelefono, String correoInstitucional, Date fechaNacimiento) {
+    public Empleados(int idEmpleado, String nombrePersona, String usuario, String numeroTelefono, String correoInstitucional, Date fechaNacimiento, String numeroDui) {
         this.idEmpleado = idEmpleado;
         this.nombrePersona = nombrePersona;
         this.usuario = usuario;
         this.numeroTelefono = numeroTelefono;
         this.correoInstitucional = correoInstitucional;
         this.fechaNacimiento = fechaNacimiento;
+        this.numeroDui = numeroDui;
     }
 
     // Getters y Setters
@@ -70,5 +72,13 @@ public class Empleados {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getNumeroDui() {
+        return numeroDui;
+    }
+
+    public void setNumeroDui(String numeroDui) {
+        this.numeroDui = numeroDui;
     }
 }

@@ -2,7 +2,7 @@ USE RecursosHumanos;
 -- Crear la tabla Departamento
 CREATE TABLE Departamento (
     idDepartamento INT AUTO_INCREMENT PRIMARY KEY,
-    nombreDepartamento VARCHAR(59),
+    nombreDepartamento VARCHAR(50),
     descripcionDepartamento TEXT
 );
 
@@ -16,9 +16,10 @@ CREATE TABLE Cargos (
 -- Crear la tabla Empleados
 CREATE TABLE Empleados (
     idEmpleado INT AUTO_INCREMENT PRIMARY KEY,
+    numeroDui VARCHAR (9),
     nombrePersona VARCHAR(50),
     usuario VARCHAR(50),
-    numeroTelefono VARCHAR(9),
+    numeroTelefono VARCHAR(15),
     correoInstitucional VARCHAR(50),
     fechaNacimiento DATE
 );

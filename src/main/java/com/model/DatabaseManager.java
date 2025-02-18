@@ -1,24 +1,26 @@
-package model;
+package com.model;
 
+import com.recursoshumanos.DatabaseConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseManager {
-    private static final String URL = "jdbc:mysql://localhost:3306/RecursosHumanos";
-    private static final String USER = "root";
-    private static final String PASSWORD = "tu_contraseña";
 
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    // Obtener conexión desde Singleton
+    private static Connection getConnection() throws SQLException {
+        return DatabaseConnection.getInstance().getConnection();
     }
 
-    public List<Empleados> getEmployees() throws SQLException {
+    // Método para obtener empleados
+    public List<Empleados> getEmployees() {
         List<Empleados> employees = new ArrayList<>();
         String query = "SELECT * FROM Empleados";
+
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
+
             while (rs.next()) {
                 Empleados employee = new Empleados();
                 employee.setIdEmpleado(rs.getInt("idEmpleado"));
@@ -27,8 +29,11 @@ public class DatabaseManager {
                 employee.setNumeroTelefono(rs.getString("numeroTelefono"));
                 employee.setCorreoInstitucional(rs.getString("correoInstitucional"));
                 employee.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+                employee.setNumeroDui(rs.getString("numeroDui"));
                 employees.add(employee);
             }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Puedes cambiarlo por un log en un archivo
         }
         return employees;
     }
