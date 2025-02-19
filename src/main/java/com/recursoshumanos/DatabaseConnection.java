@@ -5,34 +5,31 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/RecursosHumanos";
-    private static final String USER = "root";
-    private static final String PASSWORD = "$Admin1992";
-
-    // Instancia única (Singleton)
     private static DatabaseConnection instance;
-    private final Connection connection;
+    private Connection connection;
+    private String url = "jdbc:mysql://localhost:3306/recursoshumanos";
+    private String username = "root";
+    private String password = "$Admin1992";
 
-    // Constructor privado para evitar instanciación externa
     private DatabaseConnection() throws SQLException {
         try {
-            this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Conexión exitosa a la base de datos.");
-        } catch (SQLException e) {
-            throw new SQLException("Error al conectar con la base de datos", e);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            this.connection = DriverManager.getConnection(url, username, password);
+        } catch (ClassNotFoundException ex) {
+            throw new SQLException(ex);
         }
     }
 
-    // Método estático para obtener la instancia única
+    public Connection getConnection() {
+        return connection;
+    }
+
     public static DatabaseConnection getInstance() throws SQLException {
-        if (instance == null || instance.connection.isClosed()) {
+        if (instance == null) {
+            instance = new DatabaseConnection();
+        } else if (instance.getConnection().isClosed()) {
             instance = new DatabaseConnection();
         }
         return instance;
-    }
-
-    // Método para obtener la conexión
-    public Connection getConnection() {
-        return connection;
     }
 }

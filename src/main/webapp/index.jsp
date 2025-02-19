@@ -1,22 +1,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employee Management</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Datos de la Empresa</title>
+    ="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-    <h1>Employee List</h1>
-    <table class="table table-striped">
+    <h1>Lista de Empleados</h1>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Date of Birth</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Fecha de Nacimiento</th>
+            <th>DUI</th>
         </tr>
         </thead>
         <tbody>
@@ -28,10 +29,63 @@
                 <td>${employee.numeroTelefono}</td>
                 <td>${employee.correoInstitucional}</td>
                 <td>${employee.fechaNacimiento}</td>
+                <td>${employee.numeroDui}</td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+
+    <h2>Cargos</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cargo</th>
+            <th>Descripción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="cargo" items="${cargos}">
+            <tr>
+                <td>${cargo.idCargo}</td>
+                <td>${cargo.cargo}</td>
+                <td>${cargo.descripcionCargo}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+    <h2>Contrataciones</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Departamento</th>
+            <th>Empleado</th>
+            <th>Cargo</th>
+            <th>Tipo de Contratación</th>
+            <th>Fecha de Contratación</th>
+            <th>Salario</th>
+            <th>Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="contratacion" items="${contrataciones}">
+            <tr>
+                <td>${contratacion.idContratacion}</td>
+                <td>${contratacion.departamento.nombreDepartamento}</td>
+                <td>${contratacion.empleado.nombrePersona}</td>
+                <td>${contratacion.cargo.cargo}</td>
+                <td>${contratacion.tipoContratacion.tipoContratacion}</td>
+                <td>${contratacion.fechaContratacion}</td>
+                <td>${contratacion.salario}</td>
+                <td>${contratacion.estado ? 'Activo' : 'Inactivo'}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+    <a href="addEmployee.jsp" class="btn btn-primary">Agregar Nuevo Empleado</a>
 </div>
 </body>
 </html>
